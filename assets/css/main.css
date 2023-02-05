@@ -1,3 +1,20 @@
+@font-face {
+	font-family: 'Netflix Sans';
+	src: url('../fonts/NetflixSans-Regular.woff2') format('woff2'),
+}
+
 body {
-	background-color: #141414;
+	background-color: var(--secondary);
+	font-family: 'Netflix Sans', sans-serif;
+}
+
+.subtitle {
+	color: #fff;
+	margin-left: 3rem;
+}
+
+:root {
+	--primary: #e50914;
+	--secondary: #141414;
+	--tertiary: #fff;
 }
