@@ -1,9 +1,7 @@
 <script setup>
-const data = await useFetch('/api/movies')
+const { data } = await useFetch('/api/movies')
 </script>
 
 <template>
-	<code>
-		{{ data }}
-	</code>
+	<MovieCarousel :movies="data.data" />
 </template>

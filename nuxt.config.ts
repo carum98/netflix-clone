@@ -3,5 +3,8 @@ export default defineNuxtConfig({
 	ssr: true,
 	runtimeConfig: {
 		apiToken: ''
-	}
+	},
+	css: [
+		'~/assets/css/main.css'
+	],
 })
