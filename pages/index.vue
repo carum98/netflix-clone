@@ -1,5 +1,5 @@
 <script setup>
-const data = await $fetch('/api/movies')
+const data = await useFetch('/api/movies')
 </script>
 
 <template>

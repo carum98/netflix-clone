@@ -1,3 +1,4 @@
+import { Movie } from "~~/models/movie"
 import { httpClient } from "../../lib/httpClient"
 
 export default defineEventHandler(async (event) => {
@@ -6,6 +7,6 @@ export default defineEventHandler(async (event) => {
 	const response = await client.get(`/movie/${event.context.params.id}`)
 
 	return {
-		response
+		data: new Movie(response)
 	}
 })

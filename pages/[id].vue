@@ -1,7 +1,7 @@
 <script setup>
 const route = useRoute()
 
-const data = await $fetch(`/api/movies/${route.params.id}`)
+const data = await useFetch(`/api/movies/${route.params.id}`)
 </script>
 
 <template>
