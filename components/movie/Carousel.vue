@@ -15,7 +15,6 @@ onMounted(() => {
 	const list = element.querySelector('.carousel-list')!;
 
 	buttons[0].addEventListener('click', () => {
-
 		list.scrollBy({
 			left: -cards[0].clientWidth * 4,
 			behavior: 'smooth'
@@ -23,7 +22,6 @@ onMounted(() => {
 	});
 
 	buttons[1].addEventListener('click', () => {
-		console.log(list);
 		list.scrollBy({
 			left: cards[0].clientWidth * 4,
 			behavior: 'smooth'

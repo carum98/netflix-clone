@@ -10,8 +10,18 @@ const card = ref<HTMLElement>();
 
 const MoviePopover = defineAsyncComponent(() => import('~/components/movie/Popover.vue'));
 
+let timer: number;
+
 onMounted(() => {
-	card.value!.addEventListener('mouseenter', () => {
+	card.value!.addEventListener('mouseenter', async () => {
+		clearTimeout(timer);
+
+		const { promise, id } = delay(1000);
+
+		timer = id;
+
+		await promise;
+
 		const rect = card.value!.getBoundingClientRect();
 		const img = card.value!.querySelector('img')!.cloneNode() as HTMLImageElement;
 
@@ -41,6 +51,8 @@ onMounted(() => {
 	});
 
 	card.value!.addEventListener('mouseleave', () => {
+		clearTimeout(timer);
+
 		const popover = card.value!.querySelector('.movie-popover-container');
 
 		popover?.remove();
