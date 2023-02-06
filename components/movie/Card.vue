@@ -62,12 +62,17 @@ onMounted(() => {
 
 <template>
 	<article ref="card" class="movie-card">
-		<img :src="'https://image.tmdb.org/t/p/w300/' + movie.backdrop_path" :alt="movie.title" loading="lazy" />
+		<img :src="'https://image.tmdb.org/t/p/w300' + movie.backdrop_path" :alt="movie.title" width="300" height="169"
+			loading="lazy" />
 	</article>
 </template>
 
 <style scoped>
 img {
 	border-radius: 5px;
+}
+
+.movie-card {
+	cursor: pointer;
 }
 </style>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { IMovieDetail } from '~~/models/movie-detail.d';
 import { IMovie } from '~~/models/movie.d';
 
 const props = defineProps<{
@@ -7,6 +8,13 @@ const props = defineProps<{
 }>()
 
 const container = ref<HTMLElement>();
+const detail = ref<IMovieDetail>();
+
+$fetch(`/api/movies/${props.movie.id}`).then((response) => {
+	if (!response) return;
+
+	detail.value = response as unknown as IMovieDetail;
+});
 
 onMounted(() => {
 	const img = container.value!.querySelector('.movie-popover__img')!;
@@ -39,11 +47,16 @@ onMounted(() => {
 					16+
 				</div>
 				<div class="duration">
-					1h 30m
+					{{ duration(detail?.runtime || 0) }}
 				</div>
 				<div class="quality">
 					HD
 				</div>
+			</section>
+			<section class="movie-popover__genres">
+				<span v-for="genre in detail?.genres">
+					{{ genre }}
+				</span>
 			</section>
 		</div>
 	</div>
@@ -124,5 +137,20 @@ onMounted(() => {
 	padding: 0.1rem 0.4rem;
 	font-size: 9px;
 	height: fit-content;
+}
+
+.movie-popover__genres {
+	display: flex;
+	gap: 5px;
+	font-size: 12px;
+	margin-top: 1rem;
+	align-items: center;
+}
+
+.movie-popover__genres span:not(:first-of-type):before {
+	content: '•';
+	margin-right: 5px;
+	font-size: 15px;
+	color: #646464;
 }
 </style>
