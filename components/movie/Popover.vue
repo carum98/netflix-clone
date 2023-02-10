@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { createVNode, render } from 'vue';
 import { IMovieDetail } from '~~/models/movie-detail.d';
 import { IMovie } from '~~/models/movie.d';
 
@@ -15,6 +16,24 @@ $fetch(`/api/movies/${props.movie.id}`).then((response) => {
 
 	detail.value = response as unknown as IMovieDetail;
 });
+
+const MovieModal = defineAsyncComponent(() => import('~/components/movie/Modal.vue'));
+
+const showModal = () => {
+	const modal = document.createElement('div');
+
+	modal.classList.add('movie-modal-container');
+
+	const instance = createVNode(MovieModal, {
+		movie: props.movie,
+		detail: detail.value,
+		key: props.movie.id,
+	});
+
+	render(instance, modal);
+
+	document.body.appendChild(modal);
+}
 </script>
 
 <template>
@@ -33,7 +52,7 @@ $fetch(`/api/movies/${props.movie.id}`).then((response) => {
 				<button>
 					<IconLike />
 				</button>
-				<button>
+				<button @click="showModal">
 					<IconArrowDown />
 				</button>
 			</section>

@@ -16,7 +16,7 @@ onMounted(() => {
 	card.value!.addEventListener('mouseenter', async () => {
 		clearTimeout(timer);
 
-		const { promise, id } = delay(1000);
+		const { promise, id } = delay(300);
 
 		timer = id;
 
