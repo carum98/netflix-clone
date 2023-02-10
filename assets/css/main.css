@@ -22,7 +22,7 @@ body {
 
 .movie-popover-container {
 	border-radius: 0.5rem;
-	color: var(--tertiary);
 	position: fixed;
 	z-index: 9999;
+	height: fit-content;
 }

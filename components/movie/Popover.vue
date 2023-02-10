@@ -15,18 +15,13 @@ $fetch(`/api/movies/${props.movie.id}`).then((response) => {
 
 	detail.value = response as unknown as IMovieDetail;
 });
-
-onMounted(() => {
-	const img = container.value!.querySelector('.movie-popover__img')!;
-
-	img.appendChild(props.img);
-})
-
 </script>
 
 <template>
 	<div ref="container" class="movie-popover">
-		<div class="movie-popover__img"></div>
+		<div class="movie-popover__img">
+			<img :src="img.src" :height="img.height" />
+		</div>
 		<div class="movie-popover__information">
 			<section class="movie-popover__buttons">
 				<button data-active>
@@ -67,21 +62,26 @@ onMounted(() => {
 	width: 100%;
 	height: fit-content;
 	position: absolute;
-	background: var(--secondary);
 	border-radius: 5px;
-	opacity: 0;
+	transition: transform 0.5s;
 }
 
 .movie-popover:hover {
 	transform: scale(1.5);
+	transition-delay: 0.3s;
+}
+
+.movie-popover:hover .movie-popover__information {
 	opacity: 1;
-	transition: transform 1s, opacity 0.1s;
-	transition-delay: 0.5s;
+	transition-delay: 0.3s;
 }
 
 .movie-popover__information {
 	color: #fff;
 	padding: 1rem;
+	background: var(--secondary);
+	opacity: 0;
+	transition: opacity 0.3s;
 }
 
 .movie-popover__buttons {

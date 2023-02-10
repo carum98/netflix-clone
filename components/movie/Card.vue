@@ -23,7 +23,7 @@ onMounted(() => {
 		await promise;
 
 		const rect = card.value!.getBoundingClientRect();
-		const img = card.value!.querySelector('img')!.cloneNode() as HTMLImageElement;
+		const img = card.value!.querySelector('img')!.cloneNode(true) as HTMLImageElement;
 
 		const { top, left, height, width } = rect;
 
@@ -53,9 +53,12 @@ onMounted(() => {
 	card.value!.addEventListener('mouseleave', () => {
 		clearTimeout(timer);
 
-		const popover = card.value!.querySelector('.movie-popover-container');
+		setTimeout(() => {
+			const popover = card.value!.querySelector('.movie-popover-container');
 
-		popover?.remove();
+			popover?.remove();
+		}, 400);
+
 	});
 });
 </script>
