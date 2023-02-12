@@ -1,3 +1,8 @@
+export enum TYPE {
+	MOVIE = 'movie',
+	TV = 'tv'
+}
+
 export interface IMovie {
 	id: number;
 	title: string;
@@ -5,4 +10,5 @@ export interface IMovie {
 	poster_path: string;
 	backdrop_path: string;
 	release_date: string;
+	type: TYPE;
 }

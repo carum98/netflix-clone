@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { createVNode, render } from 'vue';
 import { IMovieDetail } from '~~/models/movie-detail.d';
-import { IMovie } from '~~/models/movie.d';
+import { IMovie, TYPE } from '~~/models/movie.d';
 
 const props = defineProps<{
 	movie: IMovie;
@@ -11,7 +11,7 @@ const props = defineProps<{
 const container = ref<HTMLElement>();
 const detail = ref<IMovieDetail>();
 
-$fetch(`/api/movies/${props.movie.id}`).then((response) => {
+$fetch(`/api/${props.movie.type === TYPE.MOVIE ? 'movies' : 'tv'}/${props.movie.id}`).then((response) => {
 	if (!response) return;
 
 	detail.value = response as unknown as IMovieDetail;
@@ -60,8 +60,9 @@ const showModal = () => {
 				<div class="age">
 					16+
 				</div>
-				<div class="duration">
-					{{ duration(detail?.runtime || 0) }}
+				<div>
+					{{ detail?.hasOwnProperty('runtime') ?duration(detail?.runtime || 0) : (detail?.seasons?.length +
+					' Seasons') }}
 				</div>
 				<div class="quality">
 					HD

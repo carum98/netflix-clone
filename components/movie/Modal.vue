@@ -51,7 +51,9 @@ function closeModal() {
 							16+
 						</div>
 						<div class="duration">
-							{{ duration(detail?.runtime || 0) }}
+							{{ detail?.hasOwnProperty('runtime') ?duration(detail?.runtime || 0) :
+						(detail?.seasons?.length +
+							' Seasons') }}
 						</div>
 						<div class="quality">
 							HD

@@ -4,6 +4,8 @@ export interface IMovieDetail {
 	cast: Array<String>;
 	direction: Array<String>;
 	writers: Array<String>;
-	runtime: number;
+	runtime: number?;
 	recommendations: Array<IMovie>;
+	seasons: Array<ISeason>?;
+	type: TYPE;
 }
