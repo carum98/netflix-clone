@@ -4,8 +4,6 @@ import { httpClient } from "../../../lib/httpClient"
 export default defineEventHandler(async (event) => {
 	const client = httpClient()
 
-	console.log(event)
-
 	const response = await client.get(`/tv/${event.context.params.id}?append_to_response=credits,videos,recommendations`)
 
 	return new MovieDetail(response)

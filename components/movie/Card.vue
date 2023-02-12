@@ -16,7 +16,7 @@ onMounted(() => {
 	card.value!.addEventListener('mouseenter', async () => {
 		clearTimeout(timer);
 
-		const { promise, id } = delay(300);
+		const { promise, id } = delay(500);
 
 		timer = id;
 
@@ -58,7 +58,12 @@ onMounted(() => {
 
 			popover?.remove();
 		}, 400);
+	});
 
+	window.addEventListener('scroll', () => {
+		const popover = card.value!.querySelector('.movie-popover-container');
+
+		popover?.remove();
 	});
 });
 </script>

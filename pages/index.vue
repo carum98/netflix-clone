@@ -1,5 +1,5 @@
 <script setup>
-const [trending, originals, topRated, action, family, comedy, horror, documentaries, romance, mystery, scifi, western, animation, tv] = await Promise.all([
+const [trending, originals, topRated, action, family, comedy, horror, documentaries, romance, mystery, scifi, western, animation, tv, popular] = await Promise.all([
 	useFetch('/api/movies?q=trending'),
 	useFetch('/api/movies?q=originals'),
 	useFetch('/api/movies?q=top_rated'),
@@ -13,7 +13,8 @@ const [trending, originals, topRated, action, family, comedy, horror, documentar
 	useFetch('/api/movies?q=scifi'),
 	useFetch('/api/movies?q=western'),
 	useFetch('/api/movies?q=animation'),
-	useFetch('/api/movies?q=tv')
+	useFetch('/api/movies?q=tv'),
+	useFetch('/api/popular'),
 ])
 
 const data = {
@@ -78,6 +79,8 @@ const data = {
 
 <template>
 	<TheHeader />
+
+	<TheBanner :popular="popular.data.value.data" />
 
 	<template v-for="item in data">
 		<h2 class="subtitle">{{ item.title }}</h2>

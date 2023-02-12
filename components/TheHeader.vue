@@ -1,8 +1,20 @@
+<script setup lang="ts">
+onMounted(() => {
+	const header = document.querySelector('header') as HTMLElement;
+
+	window.addEventListener('scroll', () => {
+		if (window.scrollY > 0) {
+			header.classList.add('scrolled');
+		} else {
+			header.classList.remove('scrolled');
+		}
+	});
+});
+</script>
+
 <template>
 	<header>
-		<div>
-			<img src="/logo.svg" alt="Logo" height="40" />
-		</div>
+		<img src="/logo.svg" alt="Logo" height="25" />
 		<nav>
 			<ul>
 				<li>
@@ -53,12 +65,21 @@
 <style scoped>
 header {
 	display: flex;
-	padding: 1.5rem 3rem;
+	align-items: center;
+	padding: 0.5rem 3rem;
 	color: #fff;
-	position: sticky;
+	position: fixed;
 	top: 0;
-	background-color: var(--secondary);
+	left: 0;
+	right: 0;
+	background: linear-gradient(var(--secondary), transparent 90%);
 	z-index: 100;
+
+	transition: background 0.8s;
+}
+
+header.scrolled {
+	background: var(--secondary);
 }
 
 nav {

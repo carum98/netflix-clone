@@ -118,13 +118,14 @@ function closeModal() {
 
 <style>
 .movie-modal {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
 	overflow: scroll;
 	padding: 4rem 0;
+	z-index: 9999;
 }
 
 .movie-modal__overlay {
@@ -133,16 +134,14 @@ function closeModal() {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	z-index: 9999;
-
 	background-color: rgba(0, 0, 0, 0.8);
 }
 
 .movie-modal__dialog {
 	position: relative;
 	left: 50%;
+	top: 0;
 	transform: translate(-50%, 0);
-	z-index: 9999;
 
 	width: 80%;
 	max-width: 800px;
