@@ -78,6 +78,7 @@ function closeModal() {
 					</p>
 				</div>
 			</section>
+			<TvSeason v-if="detail.seasons" :seasons="detail.seasons" :id-tv="movie.id" />
 			<section class="movie-modal__dialog-related">
 				<h2>More Like This</h2>
 				<div class="movie-modal__dialog-related-grid">
