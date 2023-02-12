@@ -2,7 +2,7 @@
 import { IMovieDetail } from '~~/models/movie-detail.d';
 import { IMovie } from '~~/models/movie.d';
 
-const props = defineProps<{
+defineProps<{
 	movie: IMovie;
 	detail: IMovieDetail;
 }>()
@@ -22,7 +22,7 @@ function closeModal() {
 		<div class="movie-modal__dialog">
 			<section class="movie-modal__dialog-header">
 				<img :src="'https://image.tmdb.org/t/p/original' + movie.backdrop_path" :alt="movie.title"
-					style="width: 100%;" />
+					style="width: 100%;" height="450" />
 
 				<div class="movie-modal__dialog-actions">
 					<button class="button-play">
@@ -62,14 +62,68 @@ function closeModal() {
 					</p>
 				</div>
 				<div>
-
+					<p>
+						<span class="movie-modal__dialog-label">Cast:</span>
+						<span class="movie-modal__dialog-value">
+							{{ detail.cast.slice(0, 3).map((cast) => cast).join(', ') }}, more
+						</span>
+					</p>
+					<p>
+						<span class="movie-modal__dialog-label">Genres:</span>
+						<span class="movie-modal__dialog-value">
+							{{ detail.genres.slice(0, 3).map((genre) => genre).join(', ') }}
+						</span>
+					</p>
 				</div>
+			</section>
+			<section class="movie-modal__dialog-related">
+				<h2>More Like This</h2>
+				<div class="movie-modal__dialog-related-grid">
+					<MovieRelated v-for="movie in detail.recommendations.slice(0, 6)" :key="movie.id" :movie="movie" />
+				</div>
+			</section>
+			<section class="movie-modal__dialog-about">
+				<h2><span style="font-weight: 300;">About</span> {{ movie.title }}</h2>
+				<p>
+					<span class="movie-modal__dialog-label">Director: </span>
+					<span class="movie-modal__dialog-value">
+						{{ detail.direction.slice(0, 5).map((director) => director).join(', ') }}
+					</span>
+				</p>
+				<p>
+					<span class="movie-modal__dialog-label">Writer: </span>
+					<span class="movie-modal__dialog-value">
+						{{ detail.writers.slice(0, 5).map((writer) => writer).join(', ') }}
+					</span>
+				</p>
+				<p>
+					<span class="movie-modal__dialog-label">Cast: </span>
+					<span class="movie-modal__dialog-value">
+						{{ detail.cast.slice(0, 10).map((cast) => cast).join(', ') }}, more
+					</span>
+				</p>
+				<p>
+					<span class="movie-modal__dialog-label">Genres:</span>
+					<span class="movie-modal__dialog-value">
+						{{ detail.genres.slice(0, 10).map((genre) => genre).join(', ') }}
+					</span>
+				</p>
 			</section>
 		</div>
 	</div>
 </template>
 
 <style>
+.movie-modal {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow: scroll;
+	padding: 4rem 0;
+}
+
 .movie-modal__overlay {
 	position: fixed;
 	top: 0;
@@ -82,20 +136,23 @@ function closeModal() {
 }
 
 .movie-modal__dialog {
-	position: fixed;
-	top: 50%;
+	position: relative;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, 0);
 	z-index: 9999;
 
 	width: 80%;
 	max-width: 800px;
-	height: 80%;
-	max-height: 800px;
 
 	background-color: var(--secondary);
+	color: #fff;
 
 	border-radius: 8px;
+	padding-bottom: 3rem;
+}
+
+.movie-modal__dialog>section:not(:first-child) {
+	padding: 0 3rem;
 }
 
 .movie-modal__dialog-header {
@@ -140,7 +197,6 @@ function closeModal() {
 	display: flex;
 	align-items: center;
 	gap: 10px;
-
 }
 
 .button-circle {
@@ -170,9 +226,9 @@ function closeModal() {
 }
 
 .movie-modal__dialog-body {
-	padding: 0 3rem;
-	color: #fff;
-	width: 70%;
+	display: grid;
+	grid-template-columns: 65% 35%;
+	grid-gap: 20px;
 }
 
 .movie-modal__dialog-summary {
@@ -193,5 +249,15 @@ function closeModal() {
 	padding: 0.1rem 0.4rem;
 	font-size: 12px;
 	height: fit-content;
+}
+
+.movie-modal__dialog-related-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 20px;
+}
+
+.movie-modal__dialog-label {
+	color: #777777;
 }
 </style>

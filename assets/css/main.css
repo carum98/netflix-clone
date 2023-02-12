@@ -15,6 +15,10 @@ body {
 	font-family: 'Netflix Sans', sans-serif;
 }
 
+body:has(.movie-modal-container) {
+	overflow: hidden;
+}
+
 .subtitle {
 	color: #fff;
 	margin-left: 3rem;
