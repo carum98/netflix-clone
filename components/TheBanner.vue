@@ -1,9 +1,22 @@
 <script setup lang="ts">
-import { IMovie } from '~~/models/movie.d';
+import { IMovieDetail } from '~~/models/movie-detail.d';
+import { IMovie, TYPE } from '~~/models/movie.d';
 
-defineProps<{
+const props = defineProps<{
 	popular: IMovie;
 }>();
+
+const modal = useModal();
+
+function moreInfo() {
+	$fetch(`/api/${props.popular.type === TYPE.MOVIE ? 'movies' : 'tv'}/${props.popular.id}`).then((response) => {
+		if (!response) return;
+
+		let detail = response as unknown as IMovieDetail;
+
+		modal.show(props.popular, detail);
+	});
+}
 
 </script>
 
@@ -24,7 +37,7 @@ defineProps<{
 				Play
 			</button>
 
-			<button class="button-info">
+			<button class="button-info" @click="moreInfo">
 				<IconInfo />
 				More Info
 			</button>
@@ -43,7 +56,6 @@ img {
 	position: relative;
 	width: 100%;
 	height: 75vh;
-	z-index: -1;
 }
 
 .actions {

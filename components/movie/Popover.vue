@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { createVNode, render } from 'vue';
 import { IMovieDetail } from '~~/models/movie-detail.d';
 import { IMovie, TYPE } from '~~/models/movie.d';
+
+const modal = useModal();
+const popover = usePopover();
 
 const props = defineProps<{
 	movie: IMovie;
@@ -16,26 +18,6 @@ $fetch(`/api/${props.movie.type === TYPE.MOVIE ? 'movies' : 'tv'}/${props.movie.
 
 	detail.value = response as unknown as IMovieDetail;
 });
-
-const MovieModal = defineAsyncComponent(() => import('~/components/movie/Modal.vue'));
-
-const showModal = () => {
-	const modal = document.createElement('div');
-
-	modal.classList.add('movie-modal-container');
-
-	const instance = createVNode(MovieModal, {
-		movie: props.movie,
-		detail: detail.value,
-		key: props.movie.id,
-	});
-
-	render(instance, modal);
-
-	document.body.appendChild(modal);
-}
-
-const popover = usePopover();
 </script>
 
 <template>
@@ -56,7 +38,7 @@ const popover = usePopover();
 				</button>
 				<button
 					@mouseenter="popover.show($event.target, detail?.hasOwnProperty('runtime') ? 'More info' : 'Episodes & Info')"
-					@click="showModal">
+					@click="modal.show(movie, detail!)">
 					<IconArrowDown />
 				</button>
 			</section>

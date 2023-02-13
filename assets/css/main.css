@@ -23,6 +23,8 @@ body:has(.movie-modal-container) {
 .subtitle {
 	color: #fff;
 	margin-left: 3rem;
+	position: sticky;
+    z-index: 2;
 }
 
 .movie-popover-container {
