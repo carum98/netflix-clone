@@ -34,6 +34,8 @@ const showModal = () => {
 
 	document.body.appendChild(modal);
 }
+
+const popover = usePopover();
 </script>
 
 <template>
@@ -46,13 +48,15 @@ const showModal = () => {
 				<button data-active>
 					<IconPlay />
 				</button>
-				<button>
-					<IconCheck />
+				<button @mouseenter="popover.show($event.target, 'Add to My List')">
+					<IconAdd />
 				</button>
-				<button>
+				<button @mouseenter="popover.show($event.target, 'I like this')">
 					<IconLike />
 				</button>
-				<button @click="showModal">
+				<button
+					@mouseenter="popover.show($event.target, detail?.hasOwnProperty('runtime') ? 'More info' : 'Episodes & Info')"
+					@click="showModal">
 					<IconArrowDown />
 				</button>
 			</section>

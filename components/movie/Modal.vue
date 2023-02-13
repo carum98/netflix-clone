@@ -14,6 +14,8 @@ function closeModal() {
 
 	document.body.removeChild(modal);
 }
+
+const popover = usePopover();
 </script>
 
 <template>
@@ -29,10 +31,10 @@ function closeModal() {
 						<IconPlay />
 						Play
 					</button>
-					<button class="button-circle">
+					<button class="button-circle" @mouseenter="popover.show($event.target, 'Remove from My List')">
 						<IconCheck />
 					</button>
-					<button class="button-circle">
+					<button class="button-circle" @mouseenter="popover.show($event.target, 'I like this')">
 						<IconLike />
 					</button>
 				</div>

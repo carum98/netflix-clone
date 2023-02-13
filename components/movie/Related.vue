@@ -4,6 +4,8 @@ import { IMovie } from '~~/models/movie.d';
 defineProps<{
 	movie: IMovie;
 }>();
+
+const popover = usePopover();
 </script>
 
 <template>
@@ -27,7 +29,7 @@ defineProps<{
 					</div>
 				</div>
 
-				<button class="button-circle">
+				<button class="button-circle" @mouseenter="popover.show($event.target, 'Add to My List')">
 					<IconAdd />
 				</button>
 			</sectin>
