@@ -70,8 +70,8 @@ onMounted(() => {
 
 <template>
 	<article ref="card" class="movie-card">
-		<img :src="'https://image.tmdb.org/t/p/w300' + movie.backdrop_path" :alt="movie.title" width="300" height="169"
-			loading="lazy" />
+		<img :src="'https://image.tmdb.org/t/p/w300' + movie.backdrop_path" :alt="movie.title || movie.id.toString()"
+			width="300" height="169" loading="lazy" />
 	</article>
 </template>
 

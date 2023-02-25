@@ -32,7 +32,7 @@ onMounted(() => {
 
 <template>
 	<section class="carousel-wrapper" ref="carousel">
-		<button class="arrow-left">
+		<button class="arrow-left" aria-label="arrow-left">
 			<svg width="32" height="32" viewBox="0 0 24 24">
 				<path fill="currentColor"
 					d="M16.88 2.88a1.25 1.25 0 0 0-1.77 0L6.7 11.29a.996.996 0 0 0 0 1.41l8.41 8.41c.49.49 1.28.49 1.77 0s.49-1.28 0-1.77L9.54 12l7.35-7.35c.48-.49.48-1.28-.01-1.77z" />
@@ -41,7 +41,7 @@ onMounted(() => {
 		<div class="carousel-list">
 			<MovieCard v-for="movie in movies" :key="movie.id" :movie="movie" />
 		</div>
-		<button class="arrow-right">
+		<button class="arrow-right" aria-label="arrow-right">
 			<svg width="32" height="32" viewBox="0 0 24 24">
 				<path fill="currentColor"
 					d="M7.38 21.01c.49.49 1.28.49 1.77 0l8.31-8.31a.996.996 0 0 0 0-1.41L9.15 2.98c-.49-.49-1.28-.49-1.77 0s-.49 1.28 0 1.77L14.62 12l-7.25 7.25c-.48.48-.48 1.28.01 1.76z" />

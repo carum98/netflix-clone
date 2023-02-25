@@ -46,7 +46,7 @@ onMounted(() => {
 					fill="currentColor"></path>
 			</svg>
 
-			<a>
+			<a href="/">
 				Kids
 			</a>
 
@@ -57,7 +57,7 @@ onMounted(() => {
 					fill="currentColor"></path>
 			</svg>
 
-			<img src="/user.png" />
+			<img src="/user.png" alt="user" />
 		</section>
 	</header>
 </template>

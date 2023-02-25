@@ -23,8 +23,8 @@ function moreInfo() {
 <template>
 	<section class="banner">
 		<div class="img">
-			<img :src="'https://image.tmdb.org/t/p/w1280' + popular.backdrop_path" :alt="popular.title" loading="lazy"
-				width="100" />
+			<img :src="'https://image.tmdb.org/t/p/w1280' + popular.backdrop_path"
+				:alt="popular.title || popular.id.toString()" loading="lazy" width="100" />
 		</div>
 
 		<p class="overview">
