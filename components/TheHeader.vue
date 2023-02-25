@@ -57,7 +57,7 @@ onMounted(() => {
 					fill="currentColor"></path>
 			</svg>
 
-			<img src="user.png" />
+			<img src="/user.png" />
 		</section>
 	</header>
 </template>
