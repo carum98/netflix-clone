@@ -1,42 +1,29 @@
-# Nuxt 3 Minimal Starter
+# <img src="https://github.com/carum98/netflix-clone/blob/main/public/favicon.ico" width="30"> <img src="https://nuxt.com/icon.png" width="30"> 
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+**Netflix clone** build with Nuxt 3
 
-## Setup
+## SetUp
+This project use [The Movie DB](https://www.themoviedb.org/)
 
-Make sure to install the dependencies:
+Create ``.env``:
 
-```bash
-# yarn
-yarn install
-
-# npm
-npm install
-
-# pnpm
-pnpm install
+```
+NUXT_API_TOKEN=[TOKEN_MOVIE_DB]
 ```
 
-## Development Server
-
-Start the development server on http://localhost:3000
-
+With Docker
 ```bash
-npm run dev
+docker run -d --env NUXT_API_TOKEN=[TOKEN_MOVIE_DB] -p 3000:3000 ghcr.io/carum98/netflix-clone:[tag]
 ```
 
-## Production
+## Video
+https://user-images.githubusercontent.com/40967143/221343405-019ba93f-b76d-4f82-a14e-4b20bdf778fa.mp4
 
-Build the application for production:
+## Screenshots
+![](https://github.com/carum98/netflix-clone/blob/main/screenshot/main.jpg)
 
-```bash
-npm run build
-```
+![](https://github.com/carum98/netflix-clone/blob/main/screenshot/modal.jpg)
 
-Locally preview production build:
+![](https://github.com/carum98/netflix-clone/blob/main/screenshot/model-detail.jpg)
 
-```bash
-npm run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+![](https://github.com/carum98/netflix-clone/blob/main/screenshot/popover.jpg)
